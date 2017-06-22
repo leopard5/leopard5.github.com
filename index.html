@@ -338,6 +338,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -364,7 +386,8 @@
       
         
           
-            <p><img src="/images/thread_status.png" alt="java Thread status"></p>
+            <h4 id="java-thread的运行周期中-有几种状态-在-java-lang-Thread-State-中有详细定义和说明"><a href="#java-thread的运行周期中-有几种状态-在-java-lang-Thread-State-中有详细定义和说明" class="headerlink" title="java thread的运行周期中, 有几种状态, 在 java.lang.Thread.State 中有详细定义和说明:"></a>java thread的运行周期中, 有几种状态, 在 java.lang.Thread.State 中有详细定义和说明:</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span> State &#123;</div><div class="line">     <span class="comment">/**</span></div><div class="line">      * Thread state for a thread which has not yet started.</div><div class="line">      */</div><div class="line">     NEW,</div><div class="line"></div><div class="line">     <span class="comment">/**</span></div><div class="line">      * Thread state for a runnable thread.  A thread in the runnable</div><div class="line">      * state is executing in the Java virtual machine but it may</div><div class="line">      * be waiting for other resources from the operating system</div><div class="line">      * such as processor.</div><div class="line">      */</div><div class="line">     RUNNABLE,</div><div class="line"></div><div class="line">     <span class="comment">/**</span></div><div class="line">      * Thread state for a thread blocked waiting for a monitor lock.</div><div class="line">      * A thread in the blocked state is waiting for a monitor lock</div><div class="line">      * to enter a synchronized block/method or</div><div class="line">      * reenter a synchronized block/method after calling</div><div class="line">      * &#123;<span class="doctag">@link</span> Object#wait() Object.wait&#125;.</div><div class="line">      */</div><div class="line">     BLOCKED,</div><div class="line"></div><div class="line">     <span class="comment">/**</span></div><div class="line">      * Thread state for a waiting thread.</div><div class="line">      * A thread is in the waiting state due to calling one of the</div><div class="line">      * following methods:</div><div class="line">      * &lt;ul&gt;</div><div class="line">      *   &lt;li&gt;&#123;<span class="doctag">@link</span> Object#wait() Object.wait&#125; with no timeout&lt;/li&gt;</div><div class="line">      *   &lt;li&gt;&#123;<span class="doctag">@link</span> #join() Thread.join&#125; with no timeout&lt;/li&gt;</div><div class="line">      *   &lt;li&gt;&#123;<span class="doctag">@link</span> LockSupport#park() LockSupport.park&#125;&lt;/li&gt;</div><div class="line">      * &lt;/ul&gt;</div><div class="line">      *</div><div class="line">      * &lt;p&gt;A thread in the waiting state is waiting for another thread to</div><div class="line">      * perform a particular action.</div><div class="line">      *</div><div class="line">      * For example, a thread that has called &lt;tt&gt;Object.wait()&lt;/tt&gt;</div><div class="line">      * on an object is waiting for another thread to call</div><div class="line">      * &lt;tt&gt;Object.notify()&lt;/tt&gt; or &lt;tt&gt;Object.notifyAll()&lt;/tt&gt; on</div><div class="line">      * that object. A thread that has called &lt;tt&gt;Thread.join()&lt;/tt&gt;</div><div class="line">      * is waiting for a specified thread to terminate.</div><div class="line">      */</div><div class="line">     WAITING,</div><div class="line"></div><div class="line">     <span class="comment">/**</span></div><div class="line">      * Thread state for a waiting thread with a specified waiting time.</div><div class="line">      * A thread is in the timed waiting state due to calling one of</div><div class="line">      * the following methods with a specified positive waiting time:</div><div class="line">      * &lt;ul&gt;</div><div class="line">      *   &lt;li&gt;&#123;<span class="doctag">@link</span> #sleep Thread.sleep&#125;&lt;/li&gt;</div><div class="line">      *   &lt;li&gt;&#123;<span class="doctag">@link</span> Object#wait(long) Object.wait&#125; with timeout&lt;/li&gt;</div><div class="line">      *   &lt;li&gt;&#123;<span class="doctag">@link</span> #join(long) Thread.join&#125; with timeout&lt;/li&gt;</div><div class="line">      *   &lt;li&gt;&#123;<span class="doctag">@link</span> LockSupport#parkNanos LockSupport.parkNanos&#125;&lt;/li&gt;</div><div class="line">      *   &lt;li&gt;&#123;<span class="doctag">@link</span> LockSupport#parkUntil LockSupport.parkUntil&#125;&lt;/li&gt;</div><div class="line">      * &lt;/ul&gt;</div><div class="line">      */</div><div class="line">     TIMED_WAITING,</div><div class="line"></div><div class="line">     <span class="comment">/**</span></div><div class="line">      * Thread state for a terminated thread.</div><div class="line">      * The thread has completed execution.</div><div class="line">      */</div><div class="line">     TERMINATED;</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<p><img src="/images/thread_status.png" alt="java Thread status"></p>
 
           
         
@@ -571,15 +594,24 @@
           
 
           
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
 
           
             
             
             <div class="site-state-item site-state-tags">
-              
-                <span class="site-state-item-count">1</span>
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">标签</span>
-              
+              </a>
             </div>
           
 
@@ -588,6 +620,53 @@
         
 
         <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/your-user-name" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/your-user-name" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/your-user-name" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/your-user-name" target="_blank" title="douban">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  douban
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/your-user-name" target="_blank" title="zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
           
         </div>
 
