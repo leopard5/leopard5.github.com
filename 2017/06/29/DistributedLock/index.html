@@ -93,16 +93,18 @@
 
 
 
-<meta name="description" content="Every man is his own worst enemy.">
+<meta name="description" content="定义 为分布式应用各节点对共享资源的排他式访问而设定的锁就是分布式锁。在分布式场景下，有很多种情况都需要实现多节点的最终一致性。比如全局发号器，分布式事务等等。  使用场景分布式锁，是控制分布式系统之间同步访问共享资源的一种方式。在分布式系统中，常常需要协调他们的动作。如果不同的系统或是同一个系统的不同主机之间共享了一个或一组资源，那么访问这些资源的时候，往往需要互斥来防止彼此干扰来保证一致性，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="分布式锁(DistributedLock)">
 <meta property="og:url" content="http://yoursite.com/2017/06/29/DistributedLock/index.html">
 <meta property="og:site_name" content="Nothing lasts forever.">
-<meta property="og:description" content="Every man is his own worst enemy.">
-<meta property="og:updated_time" content="2017-06-29T00:22:26.058Z">
+<meta property="og:description" content="定义 为分布式应用各节点对共享资源的排他式访问而设定的锁就是分布式锁。在分布式场景下，有很多种情况都需要实现多节点的最终一致性。比如全局发号器，分布式事务等等。  使用场景分布式锁，是控制分布式系统之间同步访问共享资源的一种方式。在分布式系统中，常常需要协调他们的动作。如果不同的系统或是同一个系统的不同主机之间共享了一个或一组资源，那么访问这些资源的时候，往往需要互斥来防止彼此干扰来保证一致性，">
+<meta property="og:image" content="http://yoursite.com/images/distributed/distributedlock.png">
+<meta property="og:updated_time" content="2017-06-29T00:49:40.628Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式锁(DistributedLock)">
-<meta name="twitter:description" content="Every man is his own worst enemy.">
+<meta name="twitter:description" content="定义 为分布式应用各节点对共享资源的排他式访问而设定的锁就是分布式锁。在分布式场景下，有很多种情况都需要实现多节点的最终一致性。比如全局发号器，分布式事务等等。  使用场景分布式锁，是控制分布式系统之间同步访问共享资源的一种方式。在分布式系统中，常常需要协调他们的动作。如果不同的系统或是同一个系统的不同主机之间共享了一个或一组资源，那么访问这些资源的时候，往往需要互斥来防止彼此干扰来保证一致性，">
+<meta name="twitter:image" content="http://yoursite.com/images/distributed/distributedlock.png">
 
 
 
@@ -347,8 +349,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Distributed-Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Distributed,Java</span>
+                  <a href="/categories/distributed/" itemprop="url" rel="index">
+                    <span itemprop="name">Distributed</span>
                   </a>
                 </span>
 
@@ -381,7 +383,20 @@
       
 
       
-        
+        <p><img src="/images/distributed/distributedlock.png" alt="Monoliths"></p>
+<h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><blockquote>
+<p>为分布式应用各节点对共享资源的排他式访问而设定的锁就是分布式锁。在分布式场景下，有很多种情况都需要实现多节点的最终一致性。比如全局发号器，分布式事务等等。</p>
+</blockquote>
+<h4 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h4><p>分布式锁，是控制分布式系统之间同步访问共享资源的一种方式。在分布式系统中，常常需要协调他们的动作。如果不同的系统或是同一个系统的不同主机之间共享了一个或一组资源，那么访问这些资源的时候，往往需要互斥来防止彼此干扰来保证一致性，在这种情况下，便需要使用到分布式锁。</p>
+<h5 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h5><p>传统实现分布式锁的方案一般是利用持久化数据库（如利用InnoDB行锁，或事务，或version乐观锁），当然大部分时候可以满足大部分人的需求。而如今互联网应用的量级已经几何级别的爆发，利用诸如zookeeper，redis等更高效的分布式组件来实现分布式锁，可以提供高可用的更强壮的锁特性，并且支持丰富化的使用场景。</p>
+<h4 id="一般方案"><a href="#一般方案" class="headerlink" title="一般方案"></a>一般方案</h4><ul>
+<li>dataBase<br>  1 事务<br>  2 利用InnoDB行锁<br>  3 table column 的version字段</li>
+<li>redis<br>  1 redis的watch 机制<br>  2 lua脚本实现</li>
+<li>zookeeper<br>  1 aaa<br>  2 山沟沟</li>
+<li>redislock</li>
+<li>redission</li>
+</ul>
+
       
     </div>
 
@@ -472,8 +487,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/lufei1.gif"
@@ -582,6 +606,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义"><span class="nav-number">1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用场景"><span class="nav-number">2.</span> <span class="nav-text">使用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#背景"><span class="nav-number">2.1.</span> <span class="nav-text">背景</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一般方案"><span class="nav-number">3.</span> <span class="nav-text">一般方案</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
